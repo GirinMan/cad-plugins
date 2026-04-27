@@ -1,0 +1,4 @@
+interface:
+  display_name: "CAD Render"
+  short_description: "Render CAD data into readable previews"
+  default_prompt: "Use $cad-render to generate readable CAD PNG, SVG, or HTML previews from DXF or normalized CAD JSON."
