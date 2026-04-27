@@ -1,0 +1,4 @@
+interface:
+  display_name: "CAD Convert"
+  short_description: "Unify DWG/DXF inputs as validated DXF"
+  default_prompt: "Use $cad-convert to convert CAD files to canonical DXF and record validation results."
