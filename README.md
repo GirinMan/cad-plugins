@@ -135,6 +135,9 @@ $env:CAD_PARSER_ODA_PATH = "C:\Program Files\ODA\ODAFileConverter\ODAFileConvert
 python -m cad_parser.convert --check
 ```
 
+If you need the Windows installer itself, use the ODA File Converter MSI and install it first:
+
+<https://www.opendesign.com/guestfiles/get?filename=ODAFileConverter_QT6_vc16_amd64dll_27.1.msi>
 Persist it for future Windows shells if desired:
 
 ```powershell
