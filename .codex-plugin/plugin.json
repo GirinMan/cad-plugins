@@ -1,0 +1,43 @@
+{
+  "name": "cad-plugins",
+  "version": "0.1.0",
+  "description": "Codex and Claude skills plus Python utilities for converting DWG/DXF CAD files into canonical DXF, quick summaries, focused inspection, and readable previews.",
+  "author": {
+    "name": "girinman"
+  },
+  "homepage": "https://github.com/girinman/cad-plugins",
+  "repository": "https://github.com/girinman/cad-plugins",
+  "license": "MIT",
+  "keywords": [
+    "cad",
+    "dwg",
+    "dxf",
+    "ezdxf",
+    "oda",
+    "visualization",
+    "skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "CAD Plugins",
+    "shortDescription": "Convert, summarize, inspect, and render CAD files for agents.",
+    "longDescription": "A small cross-platform CAD agent toolkit. It treats DXF as the canonical working format, converts DWG through local tools, parses annotation-aware CAD structure, and renders purpose-specific previews instead of relying on one overloaded screenshot.",
+    "developerName": "girinman",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/girinman/cad-plugins",
+    "defaultPrompt": [
+      "Use cad-convert to normalize DWG/DXF inputs to DXF before analysis.",
+      "Use cad-quicklook for a short first-pass summary, cad-render for readable previews, and cad-inspect for targeted CAD questions."
+    ],
+    "brandColor": "#006D77",
+    "screenshots": [
+      "./assets/examples/b010_preview.png",
+      "./assets/examples/pump_plan_preview.png",
+      "./assets/examples/pump_plan_preview_with_blocks.png"
+    ]
+  }
+}

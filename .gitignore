@@ -1,0 +1,25 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local CAD inputs and bulky generated artifacts
+# Keep curated, lightweight examples under assets/examples instead.
+data/raw/
+data/intermediate/
+data/processed/
+
+# OMX/local runtime state
+.omx/
