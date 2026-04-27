@@ -1,0 +1,4 @@
+interface:
+  display_name: "CAD Inspect"
+  short_description: "Inspect CAD layers, labels, blocks, regions"
+  default_prompt: "Use $cad-inspect to inspect CAD layers, labels, blocks, or regions from normalized CAD data."
