@@ -1,0 +1,4 @@
+interface:
+  display_name: "CAD Quicklook"
+  short_description: "Quickly summarize CAD files and previews"
+  default_prompt: "Use $cad-quicklook to identify a CAD file, generate a light preview, and summarize what is inside."
