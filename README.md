@@ -1,51 +1,88 @@
-# CAD Plugins
+<p align="center">
+  <img src="assets/cad-plugins-cover.png" alt="CAD Plugins cover image" width="100%">
+</p>
+
+<h1 align="center">CAD Plugins</h1>
+
+<p align="center">
+  <strong>Agent-ready CAD skills and Python utilities for DWG/DXF conversion, quick summaries, focused inspection, and readable previews.</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/GirinMan/cad-plugins/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-00A6A6?style=for-the-badge"></a>
+  <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-2E7DDB?style=for-the-badge&logo=python&logoColor=white">
+  <img alt="CAD formats" src="https://img.shields.io/badge/CAD-DWG%20%2F%20DXF-FFB000?style=for-the-badge">
+  <img alt="Codex skills" src="https://img.shields.io/badge/Codex-Skills-111827?style=for-the-badge">
+  <img alt="Claude compatible" src="https://img.shields.io/badge/Claude-Compatible-5A45FF?style=for-the-badge">
+</p>
+
+<p align="center">
+  <a href="README.ko.md">한국어</a> |
+  <strong>English</strong>
+</p>
+
+<p align="center">
+  <a href="#quickstart">Quickstart</a> |
+  <a href="#skills">Skills</a> |
+  <a href="#common-commands">Commands</a> |
+  <a href="#examples">Examples</a> |
+  <a href="#recommended-agent-workflow">Workflow</a>
+</p>
+
+---
+
+## Why This Exists
+
+CAD files are rarely just pictures. A single drawing can contain nested blocks, layers, dimensions, labels, attributes, construction geometry, and huge coordinate spaces. `CAD Plugins` gives agents a practical CAD workflow:
+
+- Preserve original DWG/DXF inputs.
+- Normalize DWG to canonical DXF when needed.
+- Parse CAD structure into annotation-aware JSON.
+- Render purpose-specific previews instead of one overloaded screenshot.
+- Inspect by layer, block, text, entity type, keyword, or coordinate region.
+
+## Skills
+
+| Area | Path | Purpose |
+| --- | --- | --- |
+| Conversion | `skills/cad-convert` | Normalize DWG/DXF inputs into canonical DXF and validate results. |
+| Quicklook | `skills/cad-quicklook` | Produce concise first-pass summaries for non-CAD specialists. |
+| Rendering | `skills/cad-render` | Generate readable PNG/SVG/HTML previews from CAD analysis JSON. |
+| Inspection | `skills/cad-inspect` | Extract focused answers about layers, labels, blocks, entities, and regions. |
+| Python utilities | `cad_parser/` | Shared conversion, parsing, modeling, and visualization code used by the skills. |
 
 ## Quickstart
 
-- Codex: "https://github.com/girinman/cad-plugins repo를 clone하고 AGENTS.md의 지시사항대로 설치를 진행하세요"
-- Claude: "https://github.com/girinman/cad-plugins repo를 clone하고 AGENTS.md의 지시사항대로 설치를 진행하세요"
-
 ```bash
-git clone https://github.com/girinman/cad-plugins.git
+git clone https://github.com/GirinMan/cad-plugins.git
 cd cad-plugins
+
 python3 --version  # must be Python 3.10+
 python3 -m venv .venv
 source .venv/bin/activate
+
 python -m pip install -U pip
 python -m pip install -r requirements.txt
+python -m unittest discover -v
 ```
 
-If macOS `python3` is the system Python 3.9, use a newer interpreter such as `python3.13 -m venv .venv`.
+If macOS `python3` points to Python 3.9, use a newer interpreter such as `python3.13 -m venv .venv`.
 
 Windows PowerShell:
 
 ```powershell
-git clone https://github.com/girinman/cad-plugins.git
+git clone https://github.com/GirinMan/cad-plugins.git
 cd cad-plugins
+
 py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
+
 python -m pip install -U pip
 python -m pip install -r requirements.txt
+python -m unittest discover -v
 ```
 
 Any Python 3.10+ interpreter is fine on Windows; `py -3.11` is just a concrete example.
-
-## What This Repo Is
-
-This repo is a draft export package for CAD-oriented agent skills. It combines:
-
-- `skills/cad-convert`: normalize DWG/DXF into canonical DXF.
-- `skills/cad-quicklook`: produce a short, non-CAD-specialist summary.
-- `skills/cad-render`: generate readable PNG/SVG/HTML views.
-- `skills/cad-inspect`: answer focused questions about layers, labels, blocks, and coordinates.
-- `cad_parser/`: Python utilities used by the skills for conversion, parsing, and rendering.
-
-The workflow is intentionally not “turn CAD into one image.” CAD files can contain geometry, labels, blocks, attributes, and layer semantics. The useful reading mode depends on the question:
-
-- Fast orientation: quicklook summary plus one clipped preview.
-- Visual check: render linework, blocks, labels, or layer-specific views.
-- Agent analysis: parse into annotation-aware JSON.
-- Focused inspection: search labels, layers, block names, and coordinate regions.
 
 ## Install As Skills
 
@@ -54,13 +91,6 @@ Codex local skill install:
 ```bash
 mkdir -p ~/.codex/skills
 cp -R skills/cad-* ~/.codex/skills/
-```
-
-Windows PowerShell:
-
-```powershell
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills"
-Copy-Item -Recurse -Force .\skills\cad-* "$env:USERPROFILE\.codex\skills\"
 ```
 
 Claude-compatible local skill copy:
@@ -73,6 +103,9 @@ cp -R skills/cad-* ~/.claude/skills/
 Windows PowerShell:
 
 ```powershell
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills"
+Copy-Item -Recurse -Force .\skills\cad-* "$env:USERPROFILE\.codex\skills\"
+
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills"
 Copy-Item -Recurse -Force .\skills\cad-* "$env:USERPROFILE\.claude\skills\"
 ```
@@ -85,7 +118,7 @@ DXF files can be parsed directly with Python. DWG conversion needs a local conve
 
 Recommended DWG converter:
 
-- ODA File Converter for macOS and Windows. This is the practical default for stable DWG to DXF conversion.
+- [ODA File Converter](https://www.opendesign.com/guestfiles/oda_file_converter) for macOS and Windows.
 - LibreDWG `dwgread` as an open-source fallback when available, with per-file validation.
 
 macOS ODA path example:
@@ -102,7 +135,7 @@ $env:CAD_PARSER_ODA_PATH = "C:\Program Files\ODA\ODAFileConverter\ODAFileConvert
 python -m cad_parser.convert --check
 ```
 
-Persist the Windows variable for future terminals:
+Persist it for future Windows shells if desired:
 
 ```powershell
 [Environment]::SetEnvironmentVariable(
@@ -149,17 +182,17 @@ python -m cad_parser.visualize data/processed/input_analysis.json \
   --clip-percentile 0.01
 ```
 
-## Skill Execution Results
+## Examples
 
 ### B010 수치지도 DXF
 
-This sample behaved like a map-style DXF: layer-centered geometry with meaningful labels. A quicklook/render pass produced a readable clipped preview suitable for orientation before deeper label inspection.
+This sample behaves like a map-style DXF: layer-centered geometry with meaningful labels. A quicklook/render pass produces a readable clipped preview suitable for orientation before deeper label inspection.
 
 ![B010 수치지도 preview](assets/examples/b010_preview.png)
 
 ### Pump Station Plan DWG
 
-This DWG was normalized to DXF first, then rendered as CAD-derived previews. The useful view was not a single full screenshot: clipped linework and block-aware previews made the dense plan easier to inspect.
+This DWG is normalized to DXF first, then rendered as CAD-derived previews. The useful view is not a single full screenshot: clipped linework and block-aware previews make the dense plan easier to inspect.
 
 ![Pump station plan preview](assets/examples/pump_plan_preview.png)
 
@@ -170,10 +203,23 @@ Block-aware preview:
 ## Recommended Agent Workflow
 
 1. Start with `cad-convert` for every DWG/DXF input so downstream steps use canonical DXF.
-2. Use `cad-quicklook` when the user asks “what is this file?” or needs a short summary.
+2. Use `cad-quicklook` when the user asks "what is this file?" or needs a short summary.
 3. Use `cad-render` when the user needs to see the drawing, but pick a purpose-specific view.
 4. Use `cad-inspect` only after the target is specific: keyword, layer, block, coordinate area, or facility label.
 
 ## What Not To Commit
 
 Do not commit customer CAD originals, huge normalized JSON reports, or generated intermediate DXF files by default. Put reusable public examples under `assets/examples/` after confirming they are safe to share.
+
+## Verification
+
+Before publishing changes, run:
+
+```bash
+python -m json.tool .codex-plugin/plugin.json >/dev/null
+python -m unittest discover -v
+python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/cad-convert
+python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/cad-quicklook
+python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/cad-render
+python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/cad-inspect
+```
