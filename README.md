@@ -8,22 +8,27 @@
 ```bash
 git clone https://github.com/girinman/cad-plugins.git
 cd cad-plugins
+python3 --version  # must be Python 3.10+
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -U pip
 python -m pip install -r requirements.txt
 ```
 
+If macOS `python3` is the system Python 3.9, use a newer interpreter such as `python3.13 -m venv .venv`.
+
 Windows PowerShell:
 
 ```powershell
 git clone https://github.com/girinman/cad-plugins.git
 cd cad-plugins
-py -3 -m venv .venv
+py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -U pip
 python -m pip install -r requirements.txt
 ```
+
+Any Python 3.10+ interpreter is fine on Windows; `py -3.11` is just a concrete example.
 
 ## What This Repo Is
 

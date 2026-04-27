@@ -7,6 +7,7 @@ Use this repository as a CAD workflow kit for Claude/Claude Code. The core idea 
 ```bash
 git clone https://github.com/girinman/cad-plugins.git
 cd cad-plugins
+python3 --version  # must be Python 3.10+
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -U pip
@@ -14,6 +15,8 @@ python -m pip install -r requirements.txt
 mkdir -p ~/.claude/skills
 cp -R skills/cad-* ~/.claude/skills/
 ```
+
+If macOS `python3` points to Python 3.9, use a newer interpreter such as `python3.13 -m venv .venv`.
 
 For DWG conversion, install ODA File Converter and configure it when needed:
 
@@ -36,13 +39,15 @@ Run in PowerShell:
 ```powershell
 git clone https://github.com/girinman/cad-plugins.git
 cd cad-plugins
-py -3 -m venv .venv
+py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -U pip
 python -m pip install -r requirements.txt
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\skills"
 Copy-Item -Recurse -Force .\skills\cad-* "$env:USERPROFILE\.claude\skills\"
 ```
+
+Use any installed Python 3.10+ interpreter; `py -3.11` is a concrete Windows example.
 
 For DWG conversion:
 

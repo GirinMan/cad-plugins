@@ -18,6 +18,7 @@ Avoid deep parsing when a quicklook answers the question. Avoid rendering one gi
 ```bash
 git clone https://github.com/girinman/cad-plugins.git
 cd cad-plugins
+python3 --version  # must be Python 3.10+
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -U pip
@@ -25,6 +26,8 @@ python -m pip install -r requirements.txt
 mkdir -p ~/.codex/skills
 cp -R skills/cad-* ~/.codex/skills/
 ```
+
+If macOS `python3` points to Python 3.9, use a newer interpreter such as `python3.13 -m venv .venv`.
 
 Install ODA File Converter for DWG support, then set the path if it is not discoverable:
 
@@ -47,13 +50,15 @@ Run in PowerShell from the cloned repo:
 ```powershell
 git clone https://github.com/girinman/cad-plugins.git
 cd cad-plugins
-py -3 -m venv .venv
+py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -U pip
 python -m pip install -r requirements.txt
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills"
 Copy-Item -Recurse -Force .\skills\cad-* "$env:USERPROFILE\.codex\skills\"
 ```
+
+Use any installed Python 3.10+ interpreter; `py -3.11` is a concrete Windows example.
 
 Install ODA File Converter for DWG support, then configure the executable path:
 
